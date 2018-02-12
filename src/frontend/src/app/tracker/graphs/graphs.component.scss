@@ -1,0 +1,96 @@
+:host {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  > * {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.distance {
+  &__total {
+    margin-top: 19px;
+  }
+  color: white;
+
+  &--text:not(:first-child) {
+    margin-top: 48px;
+  }
+
+  &--value {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Orbitron';
+    color: #0098CC;
+    margin-bottom: 25px;
+  }
+
+  &--units {
+    margin-top: 5px;
+  }
+}
+@media only screen and (max-device-width: 767px) {
+  :host {
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .distance__total {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .temp {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .humidity {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .altitude {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .speed {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
+@media only screen and (min-device-width: 768px) {
+  .temp {
+    grid-column: 1;
+    grid-row: 2;
+    -ms-grid-row: 2;
+  }
+
+  .humidity {
+    grid-column: 2;
+    grid-row: 2;
+    -ms-grid-row: 2;
+  }
+
+  .altitude {
+    grid-column: 3;
+    grid-row: 2;
+    -ms-grid-row: 2;
+  }
+
+  .speed {
+    grid-column: 4;
+    grid-row: 2;
+    -ms-grid-row: 2;
+  }
+
+  .distance__total {
+    grid-column: 5;
+    grid-row: 2;
+    -ms-grid-row: 2;
+  }
+}

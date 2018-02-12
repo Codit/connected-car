@@ -1,0 +1,106 @@
+﻿WITH AggregatePer15Minutes AS
+(
+    SELECT
+        IotHub.ConnectionDeviceGenerationId as DeviceId,
+        DateAdd(minute,-15,System.TimeStamp) as SliceStart,
+        AVG(CASE WHEN CAST(Light AS nvarchar(max)) = 'NaN' THEN NULL ELSE Light END) as AverageLight,
+        AVG(CASE WHEN CAST(Sound AS nvarchar(max)) = 'NaN' THEN NULL ELSE Sound END) as AverageSound,
+        AVG(CASE WHEN CAST(Motion AS nvarchar(max)) = 'NaN' THEN NULL ELSE Motion END) as AverageMotion,
+        AVG(CASE WHEN CAST(AirQuality AS nvarchar(max)) = 'NaN' THEN NULL ELSE AirQuality END) as AverageAirQuality,
+        AVG(CASE WHEN CAST(Temp AS nvarchar(max)) = 'NaN' THEN NULL ELSE Temp END) as AverageTemp,
+        AVG(CASE WHEN CAST(Gps.Speed AS nvarchar(max)) = 'NaN' THEN NULL ELSE Gps.Speed END) AS AverageSpeed,
+        AVG(CASE WHEN CAST(Humidity AS nvarchar(max)) = 'NaN' THEN NULL ELSE Humidity END) as AverageHumidity,
+        AVG(CASE WHEN CAST(Gps.Alt AS nvarchar(max)) = 'NaN' THEN NULL ELSE Gps.Alt END) as AverageAltitude
+    FROM
+        [device-telemetry]
+    TIMESTAMP BY
+        IoTHub.EnqueuedTime
+    GROUP BY
+        IotHub.ConnectionDeviceGenerationId,
+        TumblingWindow(Duration(minute, 15))
+),
+AggregatePer1Hour AS
+(
+    SELECT
+        IotHub.ConnectionDeviceGenerationId as DeviceId,
+        DateAdd(hour,-1,System.TimeStamp) as SliceStart,
+        AVG(CASE WHEN CAST(Light AS nvarchar(max)) = 'NaN' THEN NULL ELSE Light END) as AverageLight,
+        AVG(CASE WHEN CAST(Sound AS nvarchar(max)) = 'NaN' THEN NULL ELSE Sound END) as AverageSound,
+        AVG(CASE WHEN CAST(Motion AS nvarchar(max)) = 'NaN' THEN NULL ELSE Motion END) as AverageMotion,
+        AVG(CASE WHEN CAST(AirQuality AS nvarchar(max)) = 'NaN' THEN NULL ELSE AirQuality END) as AverageAirQuality,
+        AVG(CASE WHEN CAST(Temp AS nvarchar(max)) = 'NaN' THEN NULL ELSE Temp END) as AverageTemp,
+        AVG(CASE WHEN CAST(Gps.Speed AS nvarchar(max)) = 'NaN' THEN NULL ELSE Gps.Speed END) AS AverageSpeed,
+        AVG(CASE WHEN CAST(Humidity AS nvarchar(max)) = 'NaN' THEN NULL ELSE Humidity END) as AverageHumidity,
+        AVG(CASE WHEN CAST(Gps.Alt AS nvarchar(max)) = 'NaN' THEN NULL ELSE Gps.Alt END) as AverageAltitude
+    FROM
+        [device-telemetry]
+    TIMESTAMP BY
+        IoTHub.EnqueuedTime
+    GROUP BY
+        IotHub.ConnectionDeviceGenerationId,
+        TumblingWindow(Duration(hour, 1))
+),
+AggregatePer1Day AS
+(
+    SELECT
+        IotHub.ConnectionDeviceGenerationId as DeviceId,
+        DateAdd(day,-1,System.TimeStamp) as SliceStart,
+        AVG(CASE WHEN CAST(Light AS nvarchar(max)) = 'NaN' THEN NULL ELSE Light END) as AverageLight,
+        AVG(CASE WHEN CAST(Sound AS nvarchar(max)) = 'NaN' THEN NULL ELSE Sound END) as AverageSound,
+        AVG(CASE WHEN CAST(Motion AS nvarchar(max)) = 'NaN' THEN NULL ELSE Motion END) as AverageMotion,
+        AVG(CASE WHEN CAST(AirQuality AS nvarchar(max)) = 'NaN' THEN NULL ELSE AirQuality END) as AverageAirQuality,
+        AVG(CASE WHEN CAST(Temp AS nvarchar(max)) = 'NaN' THEN NULL ELSE Temp END) as AverageTemp,
+        AVG(CASE WHEN CAST(Gps.Speed AS nvarchar(max)) = 'NaN' THEN NULL ELSE Gps.Speed END) AS AverageSpeed,
+        AVG(CASE WHEN CAST(Humidity AS nvarchar(max)) = 'NaN' THEN NULL ELSE Humidity END) as AverageHumidity,
+        AVG(CASE WHEN CAST(Gps.Alt AS nvarchar(max)) = 'NaN' THEN NULL ELSE Gps.Alt END) as AverageAltitude
+    FROM
+        [device-telemetry]
+    TIMESTAMP BY
+        IoTHub.EnqueuedTime
+    GROUP BY
+        IotHub.ConnectionDeviceGenerationId,
+        TumblingWindow(Duration(day, 1))
+)
+
+SELECT
+    *
+INTO
+    [data-aggregation-table-15-min]
+FROM
+    AggregatePer15Minutes
+
+SELECT
+    *
+INTO
+    [data-aggregation-table-1-hour]
+FROM
+    AggregatePer1Hour
+
+SELECT
+    *
+INTO
+    [data-aggregation-blob-1-hour]
+FROM
+    AggregatePer1Hour  
+
+SELECT
+    *
+INTO
+    [data-aggregation-table-1-day]
+FROM
+    AggregatePer1Day
+
+SELECT
+*
+INTO
+    [data-aggregation-blob-1-day]
+FROM
+    AggregatePer1Day
+
+/* We can only read with 5 streams
+SELECT
+    *
+INTO
+    [data-aggregation-blob-15-min]
+FROM
+    AggregatePer15Minutes    */

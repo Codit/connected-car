@@ -1,0 +1,27 @@
+﻿{
+  "EventHubProperties": null,
+  "BlobStorageProperties": null,
+  "SQLDatabaseProperties": null,
+  "TableStorageProperties": {
+    "AccountKey": null,
+    "AccountName": "<storage-account-name>",
+    "BatchSize": 100,
+    "ColumnsToRemove": null,
+    "PartitionKey": "DeviceId",
+    "RowKey": "SliceStart",
+    "Table": "aggregateddata1day"
+  },
+  "ServiceBusQueueProperties": null,
+  "ServiceBusTopicProperties": null,
+  "DocumentDbProperties": null,
+  "DataSourceCredentialDomain": null,
+  "Name": "data-aggregation-table-1-day",
+  "DataSourceType": "Table Storage",
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated"
+  },
+  "ScriptType": "Output"
+}

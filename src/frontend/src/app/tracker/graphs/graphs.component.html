@@ -1,0 +1,12 @@
+<ng-container *ngIf="data$ | async; let data">
+  <div class="distance__total distance">
+    <div class="distance--text">Total</div>
+    <div class="distance--value">{{totalDistance}}km</div>
+    <div class="distance--text">Today</div>
+    <div class="distance--value">{{todaysDistance}}km</div>
+  </div>
+  <div app-gauge [value]="data.temp" type="TEMP" title="Temperature" class="temp"></div>
+  <div app-gauge [value]="data.humidity" type="HUMIDITY" title="Humidity" class="humidity"></div>
+  <div app-gauge [value]="data?.gps?.alt" type="ALTITUDE" title="Altitude" class="altitude"></div>
+  <div app-gauge [value]="data?.gps?.speed" type="SPEED" title="Speed" class="speed"></div>
+</ng-container>

@@ -1,0 +1,30 @@
+﻿{
+  "EventHubProperties": null,
+  "BlobStorageProperties": {
+    "Container": "aggregated-data-1-day",
+    "DateFormat": "yyyy-MM-dd",
+    "PathPattern": "{date}/{time}",
+    "StorageAccounts": [
+      {
+        "AccountKey": null,
+        "AccountName": "<storage-account-name>"
+      }
+    ],
+    "TimeFormat": "HH"
+  },
+  "SQLDatabaseProperties": null,
+  "TableStorageProperties": null,
+  "ServiceBusQueueProperties": null,
+  "ServiceBusTopicProperties": null,
+  "DocumentDbProperties": null,
+  "DataSourceCredentialDomain": null,
+  "Name": "data-aggregation-blob-1-day",
+  "DataSourceType": "Blob Storage",
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated"
+  },
+  "ScriptType": "Output"
+}

@@ -1,0 +1,17 @@
+<google-chart #historicalchart [data]="historicalData" (chartReady)="loadData($event)"></google-chart>
+<div class="graph-options">
+    <div class="graph-type-label graph-options-grid-item">Select graph type</div>
+    <mat-select placeholder="Graph type" class="graph-options-dropdown graph-type-dropdown graph-options-grid-item" [(value)]="selectedType"
+        (change)="typeChanged($event)">
+        <mat-option *ngFor="let type of graphTypes" [value]="type.value">
+            {{ type.viewValue }}
+        </mat-option>
+    </mat-select>
+    <div class="graph-interval-label graph-options-grid-item">Select graph interval</div>
+    <mat-select placeholder="Graph interval" class="graph-options-dropdown graph-interval-dropdown graph-options-grid-item" [(value)]="selectedInterval"
+        (change)="intervalChanged($event)">
+        <mat-option *ngFor="let interval of graphIntervals" [value]="interval.value">
+            {{ interval.viewValue }}
+        </mat-option>
+    </mat-select>
+</div>

@@ -1,0 +1,7 @@
+<div class="streetview">
+  <p *ngIf="!exists" class="streetview--notavailable">Sorry, streetview is not available for the current car position.</p>
+  <agm-map [ngClass]="{ 'hide': exists }" [latitude]="position?.lat" [longitude]="position?.lng" mapTypeId="satellite" [streetViewControl]="false">
+    <agm-marker [latitude]="position?.lat" [longitude]="position?.lng"></agm-marker>
+  </agm-map>
+  <div id="pano" [ngClass]="{ 'hide': !exists }" #pano class="streetview--pano"></div>
+</div>

@@ -1,0 +1,24 @@
+﻿{
+  "Sample": null,
+  "EventHubProperties": null,
+  "BlobStorageProperties": null,
+  "IoTHubProperties": {
+    "ConsumerGroupName": "<consumer-group-name>",
+    "IotHubNamespace": "<iot-hub-namespace>",
+    "SharedAccessPolicyKey": null,
+    "SharedAccessPolicyName": "<shared-access-policy-name>",
+    "EndPoint": "messages/events"
+  },
+  "BlobReferenceProperties": null,
+  "DataSourceCredentialDomain": null,
+  "Name": "device-telemetry",
+  "Type": "Data Stream",
+  "DataSourceType": "IoT Hub",
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": null
+  },
+  "ScriptType": "Input"
+}

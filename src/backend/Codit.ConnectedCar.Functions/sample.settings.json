@@ -1,0 +1,10 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+    "AzureWebJobsStorage": "<CHANGEME>",
+    "ConnectedCarServiceBus": "<CHANGEME>",
+    "ConnectedCarTableStorage": "<CHANGEME>",
+    "RealTimeApiAddress": "http://localhost:14504/api/track",
+    "RealTimeApiKey": "<CHANGEME>"
+  }
+}
