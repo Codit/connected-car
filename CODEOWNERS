@@ -1,1 +1,8 @@
+# General owners
 *       @tomkerkhove @pieterdv @jantilburgh
+
+# Owners of frontend
+/src/frontend/       @pieterdv @jantilburgh
+
+# Owners of backend
+/src/backend/       @tomkerkhove @pieterdv
