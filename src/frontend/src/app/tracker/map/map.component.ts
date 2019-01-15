@@ -50,7 +50,7 @@ export class MapComponent implements OnInit {
 
     this.leaflet = map(this.map.nativeElement);
     this.leaflet.setView([49.454105, 9.592735], 6);
-    var layer = tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, attribution: 'Open Street Map' });
+    var layer = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 15, attribution: 'Open Street Map' });
     layer.addTo(this.leaflet);
 
     var current = 0;
