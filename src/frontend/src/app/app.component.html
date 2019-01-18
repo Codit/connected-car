@@ -1,21 +1,47 @@
 <div class="content content-grid">
   <div class="logo">
-    <a href="https://www.codit.eu/connectedcar" target="_blank" class="logo__link">
-      <img src="assets/images/logo.png" class="logo__image" alt="Codit" /> <span class="logo__text">Connected car</span>
+    <a
+      href="https://www.codit.eu/connectedcar"
+      target="_blank"
+      class="logo__link"
+    >
+      <img src="assets/images/logo.png" class="logo__image" alt="Codit" />
+      <span class="logo__text">Connected car</span>
       <span class="logo__info">Click here for more info</span>
     </a>
   </div>
-  <div app-card class="card card-noshadow card-transparent graph card--nopadding" noPadding="true">
-    <app-graphs [todaysDistance]="todaysDistance$ | async | decimal" [totalDistance]="totalDistance$ | async | decimal"></app-graphs>
+  <div
+    app-card
+    class="card card-noshadow card-transparent graph card--nopadding"
+    noPadding="true"
+  >
+    <app-graphs
+      [todaysDistance]="todaysDistance$ | async | decimal"
+      [totalDistance]="totalDistance$ | async | decimal"
+    ></app-graphs>
   </div>
-  <div app-card class="card map" resizeable="true"><app-tracker></app-tracker></div>
-  <div app-card class="card streetview" resizeable="true"><app-streetview [position]="position$ | async"></app-streetview></div>
-  <div app-card class="card historicalgraph"><app-historical-graph></app-historical-graph></div>
+  <div app-card class="card map" resizeable="true">
+    <app-tracker></app-tracker>
+  </div>
+  <div class="streetview">
+    <div app-card class="card" resizeable="true">{{ currentsong }}</div>
+    <div app-card class="card" resizeable="true">
+      <app-streetview [position]="position$ | async"></app-streetview>
+    </div>
+  </div>
+  <div app-card class="card historicalgraph">
+    <app-historical-graph></app-historical-graph>
+  </div>
   <div class="powerbi" #powerbi></div>
   <div class="poweredby">
     <h1 class="poweredby--header">Powered by</h1>
     <a href="https://www.codit.eu/nebulusiot" title="Nebulus" target="_blank">
-      <img src="assets/images/nebulus.png" alt="Nebulus" width="150" target="_blank" />
+      <img
+        src="assets/images/nebulus.png"
+        alt="Nebulus"
+        width="150"
+        target="_blank"
+      />
     </a>
   </div>
 </div>
